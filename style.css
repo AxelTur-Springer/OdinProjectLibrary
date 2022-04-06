@@ -1,0 +1,86 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    background-color: lightgray;
+}
+.miniNav{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+.addBookBtn{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+.addBookBtn button{
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.formPopUp{
+    display: none;
+    flex-direction: column;
+    width: 20em;margin: auto;
+    border: saddlebrown solid;
+}
+.formPopUp form{
+    width: 95% ;
+    margin: auto;
+}
+.formPopUp input{
+    margin-top: 1em;
+    width: 100%;
+    height: 3em;
+}
+.readOrNot{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+.readOrNot p{
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+}
+.readOrNot input{
+    height: 1.5em;
+
+    width: 2em;
+
+}
+
+.gridBooksShown{
+    /*border: solid red;*/
+    display: grid;
+    grid-gap: 4em;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding: 3em;
+}
+.newBookDiv{
+    border: rgb(255, 255, 255) solid;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 18rem;
+}
+.titleOfBook{
+    display: flex;justify-content: center;
+}
+.titleOfBook p{}
+.authorBook{
+    display: flex;justify-content: center;
+}
+.authorBook{
+    display: flex;justify-content: center;
+}
