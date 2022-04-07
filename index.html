@@ -12,31 +12,34 @@
         <p>Library Odin Proyect</p>
     </nav>
 
-    <div class="addBookBtn">
-        <button>
+    <div class="eraseAddBtn">
+        <button class="addBookBtn">
             Add Book
         </button>
+        <button class="eraseAll">
+            Erase All
+        </button>
     </div>
-    
-    <div class="formPopUp">
-        <div>
-            What Did you read this time :)
-        </div>
-        <form action="" onsubmit="return false">
-            <input type="text" placeholder="Title">
-            <input type="text" placeholder="Autor">
-            <input type="text" placeholder="Pages read">
-            <div class="readOrNot">
-                <p>Did you finish reading ?</p>
-                <input type="checkbox" name="" id="" value="">
-            </div>
+    <div class="fullFormPopUp">
+        <div class="formPopUp">
             <div>
-                <input type="submit" class="SubmitBooks">
+                What Did you read this time :)
             </div>
-           
-        </form>
+            <form action="" onsubmit="return false">
+                <input type="text" placeholder="Title">
+                <input type="text" placeholder="Autor">
+                <input type="text" placeholder="Pages read">
+                <div class="readOrNot">
+                    <p>Did you finish reading ?</p>
+                    <input type="checkbox" name="" id="" value="">
+                </div>
+                <div>
+                    <input type="submit" class="SubmitBooks">
+                </div>
+            
+            </form>
+        </div>
     </div>
-    
 
     <div class="gridBooksShown">
         <div class="newBookDiv">

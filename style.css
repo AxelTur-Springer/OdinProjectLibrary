@@ -12,23 +12,45 @@ body{
     padding: 20px;
     text-align: center;
 }
-.addBookBtn{
+.eraseAddBtn{
     margin-top: 1em;
     display: flex;
     justify-content: center;
 }
-.addBookBtn button{
+
+.eraseAddBtn button{
     border: none;
     background-color: black;
     color: white;
     border-radius: 5px;
     padding: 10px 20px;
+    margin-right: 1em;
+}
+
+.fullFormPopUp{
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.521);
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
 }
 .formPopUp{
-    display: none;
+    display: flex;
     flex-direction: column;
-    width: 20em;margin: auto;
-    border: saddlebrown solid;
+    width: 22em;margin: auto;
+    margin-top: 5em;
+    background-color: white;
+    border-radius: 10px;
+    padding: 4em 1em;
+    position:absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
 }
 .formPopUp form{
     width: 95% ;
