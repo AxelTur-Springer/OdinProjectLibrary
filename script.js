@@ -1,6 +1,7 @@
 // html elements
-let popUpform = document.querySelector(".formPopUp")
+let popUpform = document.querySelector(".fullFormPopUp")
 let btnAddBook = document.querySelector(".addBookBtn")
+let btnEraseAll = document.querySelector(".eraseAll") 
 let btnSumbitNewBook = document.querySelector(".SubmitBooks")
 
 
@@ -12,10 +13,20 @@ let btnSumbitNewBook = document.querySelector(".SubmitBooks")
 btnAddBook.addEventListener("click",
     function(){
         popUpform.style.display= "flex";
+        if(popUpform.style.display= "flex"){
+        }
         
 }
 )
 
+
+btnEraseAll.addEventListener("click",
+    function(){
+        window.localStorage.clear();
+        document.location.reload()
+        
+}
+)
 
 // retrieve input values on submit
 let bookTitle;
@@ -36,7 +47,7 @@ btnSumbitNewBook.addEventListener("click",
         popUpform.style.display= "none";
        
 
-       // console.log(myLibrary)
+     
         
         addBookToLibrary(bookTitle,bookAuthor,bookPagesRead,readYesOrNei)
         renderBooks()
@@ -117,7 +128,6 @@ function setLocal(){
     window.localStorage.setItem('library', JSON.stringify(myLibraryWhenRefresh));
 }
 
-let data=window.performance.getEntriesByType("navigation")[0].type;
 
 function refreshed(){
         if(myLibraryWhenRefresh = JSON.parse(window.localStorage.getItem('library')).length === 0 ){
@@ -127,18 +137,22 @@ function refreshed(){
             console.log("else of refreshed")
             myLibraryWhenRefresh = JSON.parse(window.localStorage.getItem('library'));
 
-            if(data === "reload"){
+           
                 for(let i = 0; i < myLibraryWhenRefresh.length; i++){
                     createNewBookDiv(myLibraryWhenRefresh[i].bookTitle, myLibraryWhenRefresh[i].bookAuthor,
                     myLibraryWhenRefresh[i].bookPagesRead, myLibraryWhenRefresh[i].readYesOrNei);
                    
-                }
+                
             }
         }
 }
 
-if(data === "reload"){
-    refreshed()
+
+window.onload = function() {
+    console.log(
+        "yess"
+    )
+    refreshed() 
 }
 
 
