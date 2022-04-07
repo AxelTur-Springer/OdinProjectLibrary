@@ -45,12 +45,14 @@ btnSumbitNewBook.addEventListener("click",
         readYesOrNei = btnSumbitNewBook.parentNode.parentNode[3].checked
         
         popUpform.style.display= "none";
-       
+   
 
-     
-        
         addBookToLibrary(bookTitle,bookAuthor,bookPagesRead,readYesOrNei)
         renderBooks()
+    
+   
+        
+    
 
     }
 )
@@ -79,23 +81,29 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     const authDiv = document.createElement('div');
     const pageDiv = document.createElement('div');
     const finishedReading = document.createElement('div');
-    const removeBtn = document.createElement("div");
-   
+    const removeBtnDiv = document.createElement("div");
+    const removeBtn = document.createElement("button");   
+    if(termineDeLeer){
+            termineDeLeer= "Yees i did"
+        }else{
+            termineDeLeer="Not Just Yet"
+        }
     //class adding
     newBookDiv.classList.add("newBookDiv")
     titleDiv.classList.add("titleOfBook")
     authDiv.classList.add("authorBook")
     pageDiv.classList.add("numberOfPagesRead")
     finishedReading.classList.add("finishedReading")
+    removeBtnDiv.classList.add("btnToggleReadParent")
     removeBtn.classList.add("btnToggleReadYesOrNo")
-
     
     //appending
     newBookDiv.appendChild(titleDiv)
     newBookDiv.appendChild(authDiv)
     newBookDiv.appendChild(pageDiv)
     newBookDiv.appendChild(finishedReading)
-    newBookDiv.appendChild(removeBtn)
+    newBookDiv.appendChild(removeBtnDiv)
+    removeBtnDiv.appendChild(removeBtn)
 
     //changing values
 
@@ -103,7 +111,7 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
    authDiv.innerHTML = `<p>Author: ${autor} </p>`
    pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas} out of  </p>`
    finishedReading.innerHTML = `<p>Did i finish Reading ?  ${termineDeLeer} </p>`
-
+   removeBtn.innerText="Read"
     // returning finished div
  return library.appendChild(newBookDiv)
 
@@ -149,13 +157,23 @@ function refreshed(){
 
 
 window.onload = function() {
-    console.log(
-        "yess"
-    )
+    
     refreshed() 
 }
 
+document.getElementById("gridBooksShown").addEventListener("click",function(e) {
+	// e.target was the clicked element
+  if (e.target && e.target.matches("button.btnToggleReadYesOrNo")) {
+    if(e.target.innerText==="Read"){
+        e.target.innerText="Not Read"
+        e.target.style.backgroundColor="red"
+    }else if(e.target.innerText==="Not Read"){
+        e.target.innerText="Read"
+        e.target.style.backgroundColor="black"
 
+    }
+	}
+});
 
 
 // function to recreate divs

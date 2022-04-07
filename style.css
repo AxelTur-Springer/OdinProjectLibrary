@@ -106,3 +106,16 @@ body{
 .authorBook{
     display: flex;justify-content: center;
 }
+.btnToggleReadParent{
+    display: flex;
+    justify-content: center;
+}
+
+.btnToggleReadYesOrNo{
+    width: 10em;
+    height: 2em;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
