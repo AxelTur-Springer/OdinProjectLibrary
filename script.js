@@ -83,11 +83,7 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     const finishedReading = document.createElement('div');
     const removeBtnDiv = document.createElement("div");
     const removeBtn = document.createElement("button");   
-    if(termineDeLeer){
-            termineDeLeer= "Yees i did"
-        }else{
-            termineDeLeer="Not Just Yet"
-        }
+
     //class adding
     newBookDiv.classList.add("newBookDiv")
     titleDiv.classList.add("titleOfBook")
@@ -112,8 +108,21 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
    pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas} out of  </p>`
    finishedReading.innerHTML = `<p>Did i finish Reading ?  ${termineDeLeer} </p>`
    removeBtn.innerText="Read"
-    // returning finished div
- return library.appendChild(newBookDiv)
+  
+   if(termineDeLeer===false) {
+    removeBtn.innerText = 'Not Read';
+    removeBtn.style.backgroundColor = '#e04f63';
+}else {
+    
+    removeBtn.style.backgroundColor = '#63da63'
+}
+  
+  
+  
+   // returning finished div
+ 
+ 
+    return library.appendChild(newBookDiv)
 
 }
 
@@ -161,12 +170,13 @@ window.onload = function() {
     refreshed() 
 }
 
-document.getElementById("gridBooksShown").addEventListener("click",function(e) {
+/*document.getElementById("gridBooksShown").addEventListener("click",function(e) {
 	// e.target was the clicked element
   if (e.target && e.target.matches("button.btnToggleReadYesOrNo")) {
     if(e.target.innerText==="Read"){
         e.target.innerText="Not Read"
         e.target.style.backgroundColor="red"
+        
     }else if(e.target.innerText==="Not Read"){
         e.target.innerText="Read"
         e.target.style.backgroundColor="black"
@@ -174,8 +184,7 @@ document.getElementById("gridBooksShown").addEventListener("click",function(e) {
     }
 	}
 });
-
-
+*/
 // function to recreate divs
 /*for(let i = 0; i < myLibraryWhenRefresh.length; i++){
     createNewBookDiv(myLibraryWhenRefresh[i].bookTitle, myLibraryWhenRefresh[i].bookAuthor,
