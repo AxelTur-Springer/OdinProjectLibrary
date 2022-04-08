@@ -108,32 +108,71 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
    titleDiv.innerHTML = `<p>Title ${nombreLibro} </p>`
    authDiv.innerHTML = `<p>Author: ${autor} </p>`
    pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas} out of  </p>`
-   finishedReading.innerHTML = `<p>Did i finish Reading ?  ${termineDeLeer} </p>`
-   removeBtn.innerText="Read"
+   finishedReading.innerHTML = `<p>Did i finish Reading ?</p>`
+   removeBtn.innerText="Yes i did"
   
    if(termineDeLeer===false) {
-    removeBtn.innerText = 'Not Read';
+    removeBtn.innerText = "No i Didn´t";
     removeBtn.style.backgroundColor = '#e04f63';
     }else {
         removeBtn.style.backgroundColor = '#63da63'
     }
 
-  
+   
   
    // returning finished div
  
-
 library.appendChild(newBookDiv)
 }
 
 
 
+function toggleBtn(){
+    const libraryDiv = document.getElementById("gridBooksShown");
+    
+    
+    libraryDiv.addEventListener("click",function(e) {
+      if (e.target && e.target.matches("button.btnToggleReadYesOrNo")) {
+        if(e.target.innerText=="Yes i did"){
+          /*  e.target.innerText = 'No i Didn´t';
+            e.target.style.backgroundColor = '#e04f63';
+            console.log(e.target)*/
+            let valueTochangeIfRead;
+            for(let i = 0; i < libraryDiv.children.length;i++){
+                if(libraryDiv.children[i]===e.target.parentNode.parentNode){
+                    valueTochangeIfRead= i;
+                }
+            }
+        myLibrary[valueTochangeIfRead].readYesOrNei =false;
+       setLocal()   
+       refreshed()
+           
+        }else if(e.target.innerText=="No i Didn´t"){
+           /* e.target.innerText = 'Yes i did';
+            e.target.style.backgroundColor = '#63da63';*/
+         let valueTochange;
+            for(let i = 0; i < libraryDiv.children.length;i++){
+                if(libraryDiv.children[i]===e.target.parentNode.parentNode){
+                    valueTochange= i;
+                }
+            }
+             myLibrary[valueTochange].readYesOrNei =true;  
+             setLocal()  
+             refreshed()
+           
+        }
+    }
+    });
 
+
+
+}
 
 
 
 
 function renderBooks(){
+   toggleBtn()
     const myNode = document.getElementById("gridBooksShown");
     myNode.innerHTML = '';
     for(let i = 0; i < myLibrary.length; i++){
