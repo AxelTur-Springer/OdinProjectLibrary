@@ -32,7 +32,7 @@ button:hover{
 }
 
 .fullFormPopUp{
-    display: none;
+    display: flex;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.521);
     top:0;
@@ -77,11 +77,12 @@ button:hover{
     justify-content: end;
     flex-direction: column;
 }
-.readOrNot input{
+
+input.checkboxtest{
     height: 1.5em;
-
-    width: 2em;
-
+    width: 1.5em;
+    margin-left: 10px;
+    
 }
 
 .SubmitBooks{
@@ -139,16 +140,6 @@ button:hover{
 
 
 
-
 @media only screen and (max-width: 450px) {
-    body {
-      background-color: lightblue;
-    }
-    .readOrNot{
-        width: 100%;
-        justify-content: space-around;
-    }
-    .formPopUp{
-        padding: ;
-    }
+
   }
