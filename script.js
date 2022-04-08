@@ -1,5 +1,6 @@
 // html elements
-let popUpform = document.querySelector(".fullFormPopUp")
+let fullPopUpform = document.querySelector(".fullFormPopUp")
+let popUpform = document.querySelector(".formPopUp")
 let btnAddBook = document.querySelector(".addBookBtn")
 let btnEraseAll = document.querySelector(".eraseAll") 
 let btnSumbitNewBook = document.querySelector(".SubmitBooks")
@@ -8,16 +9,24 @@ let btnSumbitNewBook = document.querySelector(".SubmitBooks")
 
 
 
-// popUpform Button Functionalitys
+// fullPopUpform Button Functionalitys
 
 btnAddBook.addEventListener("click",
     function(){
-        popUpform.style.display= "flex";
-        if(popUpform.style.display= "flex"){
+        document.getElementById('form').reset();
+        fullPopUpform.style.display= "flex";
+        if(fullPopUpform.style.display= "flex"){
         }
         
 }
 )
+
+window.addEventListener('mouseup',function(event){
+    var pol = document.getElementById('fullFormPopUp');
+    if(event.target === pol && event.target.parentNode != pol){
+        pol.style.display = 'none';
+    }
+});  
 
 
 btnEraseAll.addEventListener("click",
@@ -39,20 +48,33 @@ btnSumbitNewBook.addEventListener("click",
     function saveValueAndPassInBook(){
         //window.localStorage.setItem('user', JSON.stringify(myLibrary));
 
-        bookTitle = btnSumbitNewBook.parentNode.parentNode[0].value
-        bookAuthor = btnSumbitNewBook.parentNode.parentNode[1].value
-        bookPagesRead = btnSumbitNewBook.parentNode.parentNode[2].value
+        bookTitle = btnSumbitNewBook.parentNode.parentNode[0]
+        bookAuthor = btnSumbitNewBook.parentNode.parentNode[1]
+        bookPagesRead = btnSumbitNewBook.parentNode.parentNode[2]
         readYesOrNei = btnSumbitNewBook.parentNode.parentNode[3].checked
         
-        popUpform.style.display= "none";
-   
+        //force correct input values user
 
-        addBookToLibrary(bookTitle,bookAuthor,bookPagesRead,readYesOrNei)
-       
-    
-        renderBooks()
+        if(bookTitle.value.length < 1){
+            document.getElementById('form').reset();
+            bookTitle.placeholder = "Please enter more than 2 words";
+        }else if(bookAuthor.value.length< 2){
+            document.getElementById('form').reset();
+            bookAuthor.placeholder = "Please enter more than 2 words";
+
+        }else if(Number.isInteger(bookPagesRead.value * 1) === false){
+            document.getElementById('form').reset();
+            bookPagesRead.placeholder = "Please enter a number larger than 1";
+        }
+        else{
+            fullPopUpform.style.display= "none";
+            addBookToLibrary(bookTitle.value,bookAuthor.value,bookPagesRead.value,readYesOrNei);
+            renderBooks();
+        }
 
         
+
+
     
 
     }
@@ -105,9 +127,9 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
 
     //changing values
 
-   titleDiv.innerHTML = `<p>Title ${nombreLibro} </p>`
+   titleDiv.innerHTML = `<p>Title: ${nombreLibro} </p>`
    authDiv.innerHTML = `<p>Author: ${autor} </p>`
-   pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas} out of  </p>`
+   pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas}</p>`
    finishedReading.innerHTML = `<p>Did i finish Reading ?</p>`
    removeBtn.innerText="Yes i did"
   

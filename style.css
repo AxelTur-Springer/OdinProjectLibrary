@@ -2,9 +2,13 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 body{
     background-color: lightgray;
+}
+button:hover{
+    cursor: pointer;
 }
 .miniNav{
     background-color: black;
@@ -51,6 +55,7 @@ body{
     right:0;
     margin-left:auto;
     margin-right:auto;
+    text-align: center;
 }
 .formPopUp form{
     width: 95% ;
@@ -79,6 +84,17 @@ body{
 
 }
 
+.SubmitBooks{
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.SubmitBooks:hover{
+    background-color: #63da63;
+    cursor: pointer;
+}
 .gridBooksShown{
     /*border: solid red;*/
     display: grid;
