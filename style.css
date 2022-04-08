@@ -10,6 +10,9 @@ body{
 button:hover{
     cursor: pointer;
 }
+button:focus{
+    outline: none;
+}
 .miniNav{
     background-color: black;
     color: white;
@@ -100,6 +103,9 @@ input.checkboxtest{
 .SubmitBooks:hover{
     background-color: #63da63;
     cursor: pointer;
+}
+.SubmitBooks:focus{
+    outline: none;
 }
 .gridBooksShown{
     /*border: solid red;*/
