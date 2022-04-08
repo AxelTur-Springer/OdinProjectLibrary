@@ -135,3 +135,20 @@ button:hover{
     color: white;
     border-radius: 10px;
 }
+
+
+
+
+
+@media only screen and (max-width: 450px) {
+    body {
+      background-color: lightblue;
+    }
+    .readOrNot{
+        width: 100%;
+        justify-content: space-around;
+    }
+    .formPopUp{
+        padding: ;
+    }
+  }
