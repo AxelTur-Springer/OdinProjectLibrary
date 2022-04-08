@@ -27,7 +27,7 @@ btnEraseAll.addEventListener("click",
         
 }
 )
-
+//
 // retrieve input values on submit
 let bookTitle;
 let bookAuthor;
