@@ -48,9 +48,10 @@ btnSumbitNewBook.addEventListener("click",
    
 
         addBookToLibrary(bookTitle,bookAuthor,bookPagesRead,readYesOrNei)
-        renderBooks()
+       
     
-   
+        renderBooks()
+
         
     
 
@@ -69,12 +70,13 @@ function Book(bookTitle,bookAuthor,bookPagesRead,readYesOrNei) {
 function addBookToLibrary(bookTitle,bookAuthor,bookPagesRead,readYesOrNei) {
     newBook = new Book(bookTitle,bookAuthor,bookPagesRead,readYesOrNei); 
     myLibrary.push(newBook);
+    setLocal()
 }
 
 //creating book div elements
 function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     const library = document.querySelector('.gridBooksShown');
-    
+
     //creating
     const newBookDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
@@ -112,55 +114,55 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
    if(termineDeLeer===false) {
     removeBtn.innerText = 'Not Read';
     removeBtn.style.backgroundColor = '#e04f63';
-}else {
-    
-    removeBtn.style.backgroundColor = '#63da63'
-}
-  
+    }else {
+        removeBtn.style.backgroundColor = '#63da63'
+    }
+
   
   
    // returning finished div
  
- 
-    return library.appendChild(newBookDiv)
 
+library.appendChild(newBookDiv)
 }
 
 
 
 
 
-let  myLibraryWhenRefresh = [];
+
+
+
 function renderBooks(){
+    const myNode = document.getElementById("gridBooksShown");
+    myNode.innerHTML = '';
     for(let i = 0; i < myLibrary.length; i++){
-        createNewBookDiv(myLibrary[i].bookTitle, myLibrary[i].bookAuthor,myLibrary[i].bookPagesRead, readYesOrNei);
-        myLibraryWhenRefresh.push(myLibrary[i])
-        myLibrary.shift();
-    }   
-setLocal()
+        createNewBookDiv(myLibrary[i].bookTitle, myLibrary[i].bookAuthor,
+         myLibrary[i].bookPagesRead, myLibrary[i].readYesOrNei);
+        
+     }
+     
+     }
 
-}
+
+
+
 
 function setLocal(){
-    window.localStorage.setItem('library', JSON.stringify(myLibraryWhenRefresh));
+    window.localStorage.setItem('library', JSON.stringify(myLibrary));
 }
 
 
 function refreshed(){
-        if(myLibraryWhenRefresh = JSON.parse(window.localStorage.getItem('library')).length === 0 ){
+        if(myLibrary = JSON.parse(window.localStorage.getItem('library')).length === 0 ){
 
         }
         else{
             console.log("else of refreshed")
-            myLibraryWhenRefresh = JSON.parse(window.localStorage.getItem('library'));
-
+            myLibrary = JSON.parse(window.localStorage.getItem('library'));
+      
            
-                for(let i = 0; i < myLibraryWhenRefresh.length; i++){
-                    createNewBookDiv(myLibraryWhenRefresh[i].bookTitle, myLibraryWhenRefresh[i].bookAuthor,
-                    myLibraryWhenRefresh[i].bookPagesRead, myLibraryWhenRefresh[i].readYesOrNei);
-                   
-                
-            }
+             renderBooks()
         }
 }
 
@@ -169,6 +171,27 @@ window.onload = function() {
     
     refreshed() 
 }
+
+
+
+
+/*document.getElementById("gridBooksShown").addEventListener("click",function(e) {
+    // e.target was the clicked element
+  if (e.target && e.target.matches("button.btnToggleReadYesOrNo")) {
+    if(e.target.innerText==="Read"){
+        
+        //myLibraryWhenRefresh[0].readYesOrNei=false;
+       renderBooks()
+       refreshed()
+    }else if(e.target.innerText==="Not Read"){
+       
+
+    }
+    }
+});
+*/
+
+
 
 /*document.getElementById("gridBooksShown").addEventListener("click",function(e) {
 	// e.target was the clicked element
