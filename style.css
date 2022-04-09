@@ -116,7 +116,7 @@ input.checkboxtest{
     display: grid;
     grid-gap: 4em;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  padding: 3em;
+  padding: 4em;
 }
 .newBookDiv{
     border: rgb(255, 255, 255) solid;
@@ -172,8 +172,11 @@ input.checkboxtest{
 
 
 
-@media only screen and (max-width: 450px) {
-.readOrNot{
-  
+@media only screen and (max-width: 600px) {
+.newBookDiv{
+    width: 100%;
+}
+.btnCloseDiv{
+justify-content: start;
 }
   }
