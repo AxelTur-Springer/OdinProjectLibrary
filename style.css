@@ -63,6 +63,7 @@ input:focus{
     margin-right:auto;
     text-align: center;
 }
+
 .formPopUp form{
     width: 95% ;
     margin: auto;
@@ -125,12 +126,29 @@ input.checkboxtest{
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
-    height: 18rem;
+    height: 20rem;
+    width: 15rem;
+}
+.btnCloseDiv{
+    
+    display: flex;
+    justify-content: end;
+    margin-right: 1em;
+}
+.btnClose{
+    width: 1.5em;
+    height: 1.5em;
+    border: none;
+    border-radius: 2px;
+    background-color: red;
+    color: white;
+    font-weight: 600;
 }
 .titleOfBook{
+    margin-top: -1em;
     display: flex;justify-content: center;
 }
-.titleOfBook p{}
+
 .authorBook{
     display: flex;justify-content: center;
 }

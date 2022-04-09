@@ -8,7 +8,6 @@ let btnSumbitNewBook = document.querySelector(".SubmitBooks")
 
 
 
-
 // fullPopUpform Button Functionalitys
 
 btnAddBook.addEventListener("click",
@@ -100,6 +99,8 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     const library = document.querySelector('.gridBooksShown');
 
     //creating
+    const removeBookBtnDiv = document.createElement("div");
+    const removeBookBtn = document.createElement("button");
     const newBookDiv = document.createElement('div');
     const titleDiv = document.createElement('div');
     const authDiv = document.createElement('div');
@@ -109,6 +110,9 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     const removeBtn = document.createElement("button");   
 
     //class adding
+   removeBookBtnDiv.classList.add("btnCloseDiv")
+   removeBookBtn.classList.add("btnClose")
+
     newBookDiv.classList.add("newBookDiv")
     titleDiv.classList.add("titleOfBook")
     authDiv.classList.add("authorBook")
@@ -118,6 +122,8 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     removeBtn.classList.add("btnToggleReadYesOrNo")
     
     //appending
+    newBookDiv.appendChild(removeBookBtnDiv)
+    removeBookBtnDiv.appendChild(removeBookBtn)
     newBookDiv.appendChild(titleDiv)
     newBookDiv.appendChild(authDiv)
     newBookDiv.appendChild(pageDiv)
@@ -126,7 +132,7 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     removeBtnDiv.appendChild(removeBtn)
 
     //changing values
-
+    removeBookBtn.innerText ="X"
    titleDiv.innerHTML = `<p>Title: ${nombreLibro} </p>`
    authDiv.innerHTML = `<p>Author: ${autor} </p>`
    pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas}</p>`
@@ -140,7 +146,7 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
         removeBtn.style.backgroundColor = '#63da63'
     }
 
-   
+ 
   
    // returning finished div
  
@@ -148,7 +154,7 @@ library.appendChild(newBookDiv)
 }
 
 
-
+// function to toogle read or not 
 function toggleBtn(){
     const libraryDiv = document.getElementById("gridBooksShown");
     
@@ -190,8 +196,38 @@ function toggleBtn(){
 
 }
 
+// function to erase single books
+function eraseBook(){
+    const libraryDiv = document.getElementById("gridBooksShown");
+    libraryDiv.addEventListener("click",function(e) {
+      if (e.target && e.target.matches("button.btnClose")) {
+         let valueTochangeIfRead;
+            for(let i = 0; i < libraryDiv.children.length;i++){
+                if(libraryDiv.children[i]===e.target.parentNode.parentNode){
+                    valueTochangeIfRead= i;
+                }
+            }
+            
+   
+     if(myLibrary.length > 1){
+        myLibrary.splice(valueTochangeIfRead,1)
+        setLocal()   
+        refreshed()
+     }else{
+        window.localStorage.clear();
+        document.location.reload()
+     }
+    }
+    });
 
 
+
+}
+eraseBook()
+
+
+
+//function renderBooks
 
 function renderBooks(){
    toggleBtn()
@@ -208,6 +244,7 @@ function renderBooks(){
 
 
 
+     //local memory functions
 
 function setLocal(){
     window.localStorage.setItem('library', JSON.stringify(myLibrary));
@@ -216,67 +253,21 @@ function setLocal(){
 
 function refreshed(){
         if(myLibrary = JSON.parse(window.localStorage.getItem('library')).length === 0 ){
-
         }
         else{
             console.log("else of refreshed")
-            myLibrary = JSON.parse(window.localStorage.getItem('library'));
-      
-           
+            myLibrary = JSON.parse(window.localStorage.getItem('library'))
              renderBooks()
         }
 }
 
 
-window.onload = function() {
-    
+window.onload = function() { 
     refreshed() 
 }
 
 
 
-
-/*document.getElementById("gridBooksShown").addEventListener("click",function(e) {
-    // e.target was the clicked element
-  if (e.target && e.target.matches("button.btnToggleReadYesOrNo")) {
-    if(e.target.innerText==="Read"){
-        
-        //myLibraryWhenRefresh[0].readYesOrNei=false;
-       renderBooks()
-       refreshed()
-    }else if(e.target.innerText==="Not Read"){
-       
-
-    }
-    }
-});
-*/
-
-
-
-/*document.getElementById("gridBooksShown").addEventListener("click",function(e) {
-	// e.target was the clicked element
-  if (e.target && e.target.matches("button.btnToggleReadYesOrNo")) {
-    if(e.target.innerText==="Read"){
-        e.target.innerText="Not Read"
-        e.target.style.backgroundColor="red"
-        
-    }else if(e.target.innerText==="Not Read"){
-        e.target.innerText="Read"
-        e.target.style.backgroundColor="black"
-
-    }
-	}
-});
-*/
-// function to recreate divs
-/*for(let i = 0; i < myLibraryWhenRefresh.length; i++){
-    createNewBookDiv(myLibraryWhenRefresh[i].bookTitle, myLibraryWhenRefresh[i].bookAuthor,
-    myLibraryWhenRefresh[i].bookPagesRead, readYesOrNei);
-   
-} */  
-
-//window.localStorage.clear();
 
 
 
