@@ -13,6 +13,9 @@ button:hover{
 button:focus{
     outline: none;
 }
+input:focus{
+    outline: none;
+}
 .miniNav{
     background-color: black;
     color: white;
@@ -35,7 +38,7 @@ button:focus{
 }
 
 .fullFormPopUp{
-    display: flex;
+    display: none;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.521);
     top:0;
