@@ -1,9 +1,9 @@
 // html elements
-let fullPopUpform = document.querySelector(".fullFormPopUp")
-let popUpform = document.querySelector(".formPopUp")
-let btnAddBook = document.querySelector(".addBookBtn")
-let btnEraseAll = document.querySelector(".eraseAll") 
-let btnSumbitNewBook = document.querySelector(".SubmitBooks")
+let fullPopUpform = document.querySelector(".fullFormPopUp");
+let popUpform = document.querySelector(".formPopUp");
+let btnAddBook = document.querySelector(".addBookBtn");
+let btnEraseAll = document.querySelector(".eraseAll");
+let btnSumbitNewBook = document.querySelector(".SubmitBooks");
 
 
 
@@ -20,6 +20,7 @@ btnAddBook.addEventListener("click",
 }
 )
 
+// ocult form when clicking outside 
 window.addEventListener('mouseup',function(event){
     var pol = document.getElementById('fullFormPopUp');
     if(event.target === pol && event.target.parentNode != pol){
@@ -28,10 +29,11 @@ window.addEventListener('mouseup',function(event){
 });  
 
 
+//Button to clear all books
 btnEraseAll.addEventListener("click",
     function(){
         window.localStorage.clear();
-        document.location.reload()
+        document.location.reload();
         
 }
 )
@@ -47,10 +49,10 @@ btnSumbitNewBook.addEventListener("click",
     function saveValueAndPassInBook(){
         //window.localStorage.setItem('user', JSON.stringify(myLibrary));
 
-        bookTitle = btnSumbitNewBook.parentNode.parentNode[0]
-        bookAuthor = btnSumbitNewBook.parentNode.parentNode[1]
-        bookPagesRead = btnSumbitNewBook.parentNode.parentNode[2]
-        readYesOrNei = btnSumbitNewBook.parentNode.parentNode[3].checked
+        bookTitle = btnSumbitNewBook.parentNode.parentNode[0];
+        bookAuthor = btnSumbitNewBook.parentNode.parentNode[1];
+        bookPagesRead = btnSumbitNewBook.parentNode.parentNode[2];
+        readYesOrNei = btnSumbitNewBook.parentNode.parentNode[3].checked;
         
         //force correct input values user
 
@@ -70,12 +72,6 @@ btnSumbitNewBook.addEventListener("click",
             addBookToLibrary(bookTitle.value,bookAuthor.value,bookPagesRead.value,readYesOrNei);
             renderBooks();
         }
-
-        
-
-
-    
-
     }
 )
 
@@ -91,7 +87,7 @@ function Book(bookTitle,bookAuthor,bookPagesRead,readYesOrNei) {
 function addBookToLibrary(bookTitle,bookAuthor,bookPagesRead,readYesOrNei) {
     newBook = new Book(bookTitle,bookAuthor,bookPagesRead,readYesOrNei); 
     myLibrary.push(newBook);
-    setLocal()
+    setLocal();
 }
 
 //creating book div elements
@@ -110,47 +106,46 @@ function createNewBookDiv(nombreLibro,autor,paginasLeidas,termineDeLeer){
     const removeBtn = document.createElement("button");   
 
     //class adding
-   removeBookBtnDiv.classList.add("btnCloseDiv")
-   removeBookBtn.classList.add("btnClose")
-
-    newBookDiv.classList.add("newBookDiv")
-    titleDiv.classList.add("titleOfBook")
-    authDiv.classList.add("authorBook")
-    pageDiv.classList.add("numberOfPagesRead")
-    finishedReading.classList.add("finishedReading")
-    removeBtnDiv.classList.add("btnToggleReadParent")
-    removeBtn.classList.add("btnToggleReadYesOrNo")
+   removeBookBtnDiv.classList.add("btnCloseDiv");
+   removeBookBtn.classList.add("btnClose");
+    newBookDiv.classList.add("newBookDiv");
+    titleDiv.classList.add("titleOfBook");
+    authDiv.classList.add("authorBook");
+    pageDiv.classList.add("numberOfPagesRead");
+    finishedReading.classList.add("finishedReading");
+    removeBtnDiv.classList.add("btnToggleReadParent");
+    removeBtn.classList.add("btnToggleReadYesOrNo");
     
     //appending
-    newBookDiv.appendChild(removeBookBtnDiv)
-    removeBookBtnDiv.appendChild(removeBookBtn)
-    newBookDiv.appendChild(titleDiv)
-    newBookDiv.appendChild(authDiv)
-    newBookDiv.appendChild(pageDiv)
-    newBookDiv.appendChild(finishedReading)
-    newBookDiv.appendChild(removeBtnDiv)
-    removeBtnDiv.appendChild(removeBtn)
+    newBookDiv.appendChild(removeBookBtnDiv);
+    removeBookBtnDiv.appendChild(removeBookBtn);
+    newBookDiv.appendChild(titleDiv);
+    newBookDiv.appendChild(authDiv);
+    newBookDiv.appendChild(pageDiv);
+    newBookDiv.appendChild(finishedReading);
+    newBookDiv.appendChild(removeBtnDiv);
+    removeBtnDiv.appendChild(removeBtn);
 
     //changing values
-    removeBookBtn.innerText ="X"
-   titleDiv.innerHTML = `<p>Title: ${nombreLibro} </p>`
-   authDiv.innerHTML = `<p>Author: ${autor} </p>`
-   pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas}</p>`
-   finishedReading.innerHTML = `<p>Did i finish Reading ?</p>`
-   removeBtn.innerText="Yes i did"
+    removeBookBtn.innerText ="X";
+   titleDiv.innerHTML = `<p>Title: ${nombreLibro} </p>`;
+   authDiv.innerHTML = `<p>Author: ${autor} </p>`;
+   pageDiv.innerHTML = `<p>I readed up to page ${paginasLeidas}</p>`;
+   finishedReading.innerHTML = `<p>Did i finish Reading ?</p>`;
+   removeBtn.innerText="Yes i did";
   
    if(termineDeLeer===false) {
     removeBtn.innerText = "No i Didn´t";
     removeBtn.style.backgroundColor = '#e04f63';
     }else {
-        removeBtn.style.backgroundColor = '#63da63'
+        removeBtn.style.backgroundColor = '#63da63';
     }
 
  
   
    // returning finished div
  
-library.appendChild(newBookDiv)
+library.appendChild(newBookDiv);
 }
 
 
@@ -172,8 +167,8 @@ function toggleBtn(){
                 }
             }
         myLibrary[valueTochangeIfRead].readYesOrNei =false;
-       setLocal()   
-       refreshed()
+       setLocal();
+       refreshed();
            
         }else if(e.target.innerText=="No i Didn´t"){
            /* e.target.innerText = 'Yes i did';
@@ -185,8 +180,8 @@ function toggleBtn(){
                 }
             }
              myLibrary[valueTochange].readYesOrNei =true;  
-             setLocal()  
-             refreshed()
+             setLocal();
+             refreshed();
            
         }
     }
@@ -210,12 +205,12 @@ function eraseBook(){
             
    
      if(myLibrary.length > 1){
-        myLibrary.splice(valueTochangeIfRead,1)
-        setLocal()   
-        refreshed()
+        myLibrary.splice(valueTochangeIfRead,1);
+        setLocal();   
+        refreshed();
      }else{
         window.localStorage.clear();
-        document.location.reload()
+        document.location.reload();
      }
     }
     });
@@ -223,7 +218,7 @@ function eraseBook(){
 
 
 }
-eraseBook()
+eraseBook();
 
 
 
@@ -256,14 +251,14 @@ function refreshed(){
         }
         else{
             console.log("else of refreshed")
-            myLibrary = JSON.parse(window.localStorage.getItem('library'))
-             renderBooks()
+            myLibrary = JSON.parse(window.localStorage.getItem('library'));
+             renderBooks();
         }
 }
 
 
 window.onload = function() { 
-    refreshed() 
+    refreshed() ;
 }
 
 
