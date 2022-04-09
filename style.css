@@ -177,6 +177,6 @@ input.checkboxtest{
     width: 100%;
 }
 .btnCloseDiv{
-justify-content: start;
+justify-content: end;
 }
   }
