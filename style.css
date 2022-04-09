@@ -176,9 +176,12 @@ input.checkboxtest{
 .newBookDiv{
     width: 100%;
 }
+body{
+    background-color: #63da63;
+}
 .btnCloseDiv{
 justify-content: end;
-margin-right: 0em;
+margin-left: 2em;
 
 }
 
